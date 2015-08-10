@@ -1,0 +1,74 @@
+<div class="panel panel-midnightblue">
+	<div class="panel-heading">
+		<h2 ng-if="builder.id">Edit builder</h2>
+		<h2 ng-if="!builder.id">Add new builder</h2>
+		<div class="options">
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<form class="form-horizontal row-border col-sm-8">
+				<div class="form-group">
+					<label for="builder" class="col-sm-2 control-label">Builder name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="builder" placeholder="Builder name" ng-model="builder.builder" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="phone" class="col-sm-2 control-label">Phone number</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone" placeholder="Phone number" ng-model="builder.phone" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="fax" class="col-sm-2 control-label">Fax number</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="fax" placeholder="Fax" ng-model="builder.fax" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-2 control-label">Email address</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="email" placeholder="Email address" ng-model="builder.email" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="paid" class="col-sm-2 control-label">Paid</label>
+					<div class="col-sm-10">
+						<input type="checkbox" ui-switch class="js-switch-primary switchery-sm" ng-model="builder.paid" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="website" class="col-sm-2 control-label">Website</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="website" placeholder="Website" ng-model="builder.website" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">Status</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="builder.status"
+					          ng-options="status for status in BUILDER_STATUSES">
+					    </select>
+					</div>
+				</div>
+			</form>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label for="photo">Photo</label>
+					<div class="col-sm-12" file-uploader="onPhotoUploadFinished" file-uploader-before="onPhotoBeforeUpload" file-uploader-error="onPhotoUploadFailed" photo-resize = "true">
+						<img ng-src="{{ builder.photo ? builder.photo : 'upload/default-builder.png' }}" style="max-width:100%;" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<button class="btn-primary btn" ng-click="onSave()">Save</button>
+				<a class="btn-danger btn" ui-sref="builders">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>

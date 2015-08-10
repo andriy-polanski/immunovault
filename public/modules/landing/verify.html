@@ -1,0 +1,27 @@
+<div class="container" id="registration-form" ng-controller="verifyUserController">
+  <a href="/" class="login-logo"><img src="../assets/img/logo-big.png"></a>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+          <div ng-show="verificationStatus == 'true'">
+            Your account has been fully verified. You can access the database now.<br /><br />
+            <center>
+              <a href="/" class="btn btn-default">Continue to dashboard</a>
+            </center>
+          </div>
+          <div ng-show="verificationStatus != 'true'">
+            The token has been expired or wrong. Please check your email again.<br /><br />
+            <center>
+              <a href="/" class="btn btn-default">Back</a>
+            </center>
+          </div>
+        </div>
+        <div class="panel-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

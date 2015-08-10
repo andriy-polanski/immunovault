@@ -1,0 +1,23 @@
+{
+  apps : [
+    {
+      name      : "NewHomezApp",
+      script    : "/usr/local/bin/grunt",
+      env_production : {
+        NODE_ENV: "production"
+      }
+    }
+  ],
+  deploy : {
+    production : {
+      key  : "/srv/newhomesapp/pem/newhomezapp.pem",
+      user : "ubuntu",
+      host : "52.26.240.49",
+      ref  : "origin/master",
+      repo : "git@fordhaminc.git.beanstalkapp.com:/fordhaminc/newhomzdatamanagement.git",
+      path : "/srv/production",
+      "pre-deploy": "",
+      "post-deploy" : "sudo npm install && sudo bower install --allow-root && sequelize db:migrate --env production && sudo pm2 startOrRestart ecosystem.json5 --env production"
+    }
+  }
+}

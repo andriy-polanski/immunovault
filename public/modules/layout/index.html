@@ -1,0 +1,24 @@
+<header id="topnav" class="navbar navbar-default navbar-fixed-top" role="banner" ng-include="'modules/layout/header.html'" ng-controller="headerController">
+</header>
+<div id="wrapper">
+	<div id="layout-static">
+		<div class="static-sidebar-wrapper sidebar-default" ng-include="'modules/layout/sidebar.html'" ng-controller="sidebarController">
+		</div>
+		<div class="static-content-wrapper">
+            <div class="static-content">
+                <div class="page-content">
+                	<ol class="breadcrumb">
+						<li><a ui-sref="dashboard">Dashboard</a></li>
+						<li ng-repeat="breadcrumb in breadcrumbs"><a ui-sref="{{breadcrumb.url}}" data-ui-sref-opts="{reload: true}">{{breadcrumb.title}}</a></li>
+					</ol>
+					<div class="container-fluid">
+						<div class="alert alert-warning" role="alert" ng-show="error !== ''">{{ error }}</div>
+						<div class="alert alert-info" role="alert" ng-show="message !== ''">{{ message }}</div>
+					</div>
+					<div class="container-fluid" ui-view>
+					</div>
+            	</div>
+           	</div>
+		</div>
+	</div>
+</div>

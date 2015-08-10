@@ -1,0 +1,44 @@
+<div class="panel panel-midnightblue">
+  <div class="panel-heading">
+    <h2>Builders</h2>
+    <div class="options">
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="margin-bottom-5">
+      <a class="btn btn-success pull-right margin-left-10" ng-mousedown="csv.generate()" ng-href="{{ csv.link() }}" download="builders.csv"><i class="fa fa-print fa-lg margin-right-5"></i>Export to CSV</a>
+      <a ui-sref="builders/add" class="btn btn-primary pull-right" ng-if="currentUser.role == 'ADMIN'"><i class="fa fa-plus fa-lg margin-right-5"></i>Add new Builder</a>
+    </div>
+    <table id="builders" class="table table-striped" ng-table="tableParams" export-csv="csv">
+      <tr ng-repeat="builder in $data" ng-click="$state.go('builders/edit', {id: builder.id})">
+        <td data-title="'Builder'" sortable="'builder'" class="title" 
+            style="cursor:pointer;" filterable="{field:'builder', type:'text', align:'LEFT'}">
+          <a ui-sref="listings({builder: builder.id})" title="View listings">{{builder.builder}}</a>
+        </td> <!-- -->
+
+        <td data-title="'Phone'" sortable="'phone'" class="phone"><!-- filterable="{field:'phone', type:'text', align:'LEFT'}" -->
+          <span ng-bind="builder.phone" filterable="{field:'phone', type:'text'}"></span>
+        </td>
+        <td data-title="'Email'" sortable="'email'" class="email"><!-- filterable="{field:'email', type:'text'}" -->
+          <span ng-bind="builder.email" filterable="{field:'email', type:'text'}"></span>
+        </td>
+        <td data-title="'Listings'" class="role text-center" sortable="'Listings.length'"><!--  filterable="{field:'role', type:'dropdown'}"-->
+         <a ui-sref="listings({builder: builder.id})" ng-bind="builder.Listings.length"></a>
+        </td>
+        <td data-title="'Paid Status'" sortable="'paid'" class="name text-center">
+          <span ng-if="builder.paid == 1">Paid</span>
+          <span ng-if="builder.paid == 0"></span>
+        </td>
+        
+
+        <td data-title="'Status'" sortable="'status'" class="status text-center" ng-bind="builder.status" filterable="{field:'status', type:'dropdown'}"></td> <!--   -->
+
+        <td data-title="" class="buttons text-center">
+          <a ui-sref="builders/edit({id: builder.id})" class="btn btn-xs btn-stealth" title="Edit"><i class="fa fa-edit fa-lg"></i></a>
+          <a ui-sref="listings({builder: builder.id})" class="btn btn-xs btn-stealth" title="View listings"><i class="fa fa-search-plus fa-lg"></i></a>
+          <button ng-click="onDeleteBuilder(builder)" class="btn btn-xs btn-danger" ng-if="currentUser.role == 'ADMIN'"><i class="fa fa-trash fa-lg"></i></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

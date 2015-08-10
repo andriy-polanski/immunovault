@@ -1,0 +1,36 @@
+<div class="panel panel-midnightblue">
+  <div class="panel-heading">
+    <h2>Users</h2>
+    <div class="options">
+    </div>
+  </div>
+  <div class="panel-body">
+    <a ui-sref="users/add" class="btn btn-primary pull-right margin-bottom-5"><i class="fa fa-plus fa-lg margin-right-5"></i>Add new User</a>
+    <table id="users" class="table table-striped" ng-table="tableParams">
+      <tr ng-repeat="user in $data" ng-click="$state.go('users/edit', {id: user.id})">
+        <td data-title="'Email'" sortable="'email'" sortable="'email'" class="title" ng-bind="user.email" 
+            style="cursor:pointer;"></td> <!-- filterable="{field:'email', type:'text', align:'LEFT'}"-->
+
+        <td data-title="'Name'" sortable="'name'" class="name"><!-- filterable="{field:'name', type:'text', align:'LEFT'}" -->
+          <span ng-bind="user.name"></span>
+        </td>
+
+        <td data-title="'Role'" sortable="'role'" class="role text-center"><!--  filterable="{field:'role', type:'dropdown'}"-->
+          <span ng-bind="user.role"></span>
+        </td>
+
+        <td data-title="'Assigned builders'" class="role text-center"><!--  filterable="{field:'role', type:'dropdown'}"-->
+          <span ng-bind="user.Builders.length" ng-show="user.role == 'USER'"></span>
+          <span ng-show="user.role == 'ADMIN'">#</span>
+        </td>
+
+        <td data-title="'Status'" sortable="'status'" class="status text-center" ng-bind="user.status"></td> <!--  filterable="{field:'status', type:'dropdown'}" -->
+
+        <td data-title="" class="buttons text-center">
+          <a ui-sref="users/edit({id: user.id})" class="btn btn-xs btn-stealth"><i class="fa fa-edit fa-lg"></i></a>
+          <button ng-click="onDeleteUser(user)" class="btn btn-xs btn-danger"><i class="fa fa-trash fa-lg"></i></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

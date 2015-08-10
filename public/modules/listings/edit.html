@@ -1,0 +1,249 @@
+<div class="panel panel-midnightblue">
+	<div class="panel-heading">
+		<h2 ng-if="listing.id">Edit listing</h2>
+		<h2 ng-if="!listing.id">Add new listing</h2>
+		<div class="options">
+			<ul class="nav nav-tabs"><li class="dropdown pull-right tabdrop hide"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-angle-down"></i> </a><ul class="dropdown-menu"></ul></li>
+				<li class="active" ng-show="listing.id"><a show-tab="#listinginfo-form" data-toggle="tab" aria-expanded="true">Listing info</a></li>
+				<li class="" ng-show="listing.id"><a show-tab="#gallery-form" data-toggle="tab" aria-expanded="false">Gallery</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="tab-content">
+			<div class="tab-pane active" id="listinginfo-form">
+				<form class="form-horizontal row-border">
+				<div class="form-group col-sm-6">
+					<label for="listing" class="col-sm-2 control-label">Listing name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="listing" placeholder="Listing name" ng-model="listing.listing" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="builder" class="col-sm-2 control-label">Builder</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="listing.builderID"
+					          ng-options="builder.id as builder.builder for builder in builders" ng-if="currentUser.role == 'ADMIN'">
+					    </select>
+					    <label class="form-control" ng-if="currentUser.role == 'USER'">{{listing.builder}}</label>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="propType" class="col-sm-2 control-label">Property Type</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="propType" placeholder="" ng-model="listing.propType" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="community" class="col-sm-2 control-label">community</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="community" placeholder="" ng-model="listing.community" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="city" class="col-sm-2 control-label">city</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="city" placeholder="" ng-model="listing.city" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="county" class="col-sm-2 control-label">county</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="county" placeholder="" ng-model="listing.county" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="state" class="col-sm-2 control-label">state</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="state" placeholder="" ng-model="listing.state" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="zip" class="col-sm-2 control-label">zip</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="zip" placeholder="" ng-model="listing.zip" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-12">
+					<label for="description" class="col-sm-1 control-label">description</label>
+					<div class="col-sm-11">
+						<textarea type="text" class="form-control" id="description" rows="5" placeholder="" ng-model="listing.description"></textarea>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="email" class="col-sm-2 control-label">email</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="email" placeholder="" ng-model="listing.email" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="phone" class="col-sm-2 control-label">phone</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone" placeholder="" ng-model="listing.phone" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-4">
+					<label for="priceTxt" class="col-sm-3 control-label">priceTxt</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="priceTxt" placeholder="" ng-model="listing.priceTxt" />
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="priceLow" class="col-sm-3 control-label">priceLow</label>
+					<div class="col-sm-9">
+						<input type="number" class="form-control" id="priceLow" placeholder="" ng-model="listing.priceLow" />
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="priceHigh" class="col-sm-3 control-label">priceHigh</label>
+					<div class="col-sm-9">
+						<input type="number" class="form-control" id="priceHigh" placeholder="" ng-model="listing.priceHigh" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="sqftLow" class="col-sm-2 control-label">sqftLow</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="sqftLow" placeholder="" ng-model="listing.sqftLow" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="sqftHigh" class="col-sm-2 control-label">sqftHigh</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="sqftHigh" placeholder="" ng-model="listing.sqftHigh" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="bedLow" class="col-sm-2 control-label">bedLow</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="bedLow" placeholder="" ng-model="listing.bedLow" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="bedHigh" class="col-sm-2 control-label">bedHigh</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="bedHigh" placeholder="" ng-model="listing.bedHigh" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="bathLow" class="col-sm-2 control-label">bathLow</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="bathLow" placeholder="" ng-model="listing.bathLow" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="bathHigh" class="col-sm-2 control-label">bathHigh</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="bathHigh" placeholder="" ng-model="listing.bathHigh" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="hoa" class="col-sm-2 control-label">hoa</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="hoa" placeholder="" ng-model="listing.hoa" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="tax" class="col-sm-2 control-label">tax</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="tax" placeholder="" ng-model="listing.tax" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="payment" class="col-sm-2 control-label">payment</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="payment" placeholder="" ng-model="listing.payment" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="lot" class="col-sm-2 control-label">lot</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="lot" placeholder="" ng-model="listing.lot" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="lat" class="col-sm-2 control-label">Latitude</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="lat" placeholder="" ng-model="listing.lat" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="lng" class="col-sm-2 control-label">Longitude</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="lng" placeholder="" ng-model="listing.lng" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="vid" class="col-sm-2 control-label">VID</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="vid" placeholder="" ng-model="listing.vid" />
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="website" class="col-sm-2 control-label">Website</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="website" placeholder="" ng-model="listing.website" />
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="vid" class="col-sm-2 control-label">Photo1</label>
+					<div class="col-sm-10">
+						<div class="col-sm-12" file-uploader="onPhotoUploadFinished" file-uploader-before="onPhotoBeforeUpload" file-uploader-error="onPhotoUploadFailed" remove-callback="onRemovePhotoCallback" ng-model="listing.photo" photo-resize = "true">
+							<img ng-src="{{ listing.photo && listing.photo != '' ? listing.photo : 'upload/default-builder.png' }}" style="max-width:100%;" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="vid" class="col-sm-2 control-label">Photo2</label>
+					<div class="col-sm-10">
+						<div class="col-sm-12" file-uploader="onPhoto2UploadFinished" file-uploader-before="onPhoto2BeforeUpload" file-uploader-error="onPhoto2UploadFailed" remove-callback="onRemovePhoto2Callback" ng-model="listing.photo2" photo-resize = "true">
+							<img ng-src="{{ listing.photo2 && listing.photo2 != '' ? listing.photo2 : 'upload/default-builder.png' }}" style="max-width:100%;" />
+						</div>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="form-group col-sm-6">
+					<label for="password" class="col-sm-2 control-label">Status</label>
+					<div class="col-sm-10">
+						<select class="form-control" ng-model="listing.status"
+					          ng-options="status for status in LISTING_STATUSES">
+					    </select>
+					</div>
+				</div>
+				</form>
+			</div>
+
+			<div class="tab-pane" id="gallery-form">
+				<div class="col-sm-3" ng-repeat="gallery in listing.Galleries">
+					<img ng-src="{{ gallery.photo }}" style="width:100%;" />
+					<div class="center-text"><a ng-click="removeGallery($index)"><i class="fa fa-trash fa-lg"></i></a></div>
+				</div>
+
+				<div class="col-sm-3" file-uploader="onGalleryUploadFinished" file-uploader-before="onGalleryBeforeUpload" file-upload-error="onGalleryUploadFailed" multiple="'true'" photo-resize = "true">
+					<img src="assets/img/add-photo.png" style="width:100%;" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<button class="btn-primary btn" ng-click="onSave()">Save</button>
+				<a class="btn-danger btn" ui-sref="listings">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>

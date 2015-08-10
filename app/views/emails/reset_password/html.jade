@@ -1,0 +1,24 @@
+extends ../layout/html.jade
+
+block title
+	span.
+		Reset password
+
+block content
+	p.
+		Somebody has requested to reset your password.
+	p.
+		Please click following link to reset your password.
+	p
+		a(href="#{config.app.host}/reset/#{param.token}").
+			Click Here
+	p.
+		Or open following link
+	p.
+		#{config.app.host}/reset/#{param.token}
+	p.
+		If you need help or have any questions, please visit https://help.immunovault.com
+	p.
+		Thanks! 
+	p.
+		Envato

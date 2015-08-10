@@ -1,0 +1,49 @@
+<div class="panel panel-midnightblue">
+  <div class="panel-heading">
+    <h2>Listings</h2>
+    <div class="options">
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="margin-bottom-5">
+      <a class="btn btn-success pull-right margin-left-10" ng-mousedown="csv.generate()" ng-href="{{ csv.link() }}" download="listings.csv"><i class="fa fa-print fa-lg margin-right-5"></i>Export to CSV</a>
+      <a ui-sref="listings/add" class="btn btn-primary pull-right margin-bottom-5"><i class="fa fa-plus fa-lg margin-right-5"></i>Add new Listing</a>
+    </div>
+    <table id="listings" class="table table-striped" ng-table="tableParams" export-csv="csv">
+      <tr ng-repeat="listing in $data" ng-click="$state.go('listings/edit', {id: listing.id})">
+        <td data-title="'Name'" sortable="'listing'" class="title" ng-bind="listing.listing" 
+            style="cursor:pointer;" filterable="{field:'listing', type:'text', align:'LEFT'}"></td> <!-- -->
+        <td data-title="'Builder'" sortable="'Builder.builder'" class="title" 
+            style="cursor:pointer;" filterable="{field:'builder', type:'text', align:'LEFT'}">
+          <a ui-sref="builders/edit({id:listing.builderID})">{{listing.Builder.builder}}</a>
+        </td> <!-- filterable="{field:'listing', type:'text', align:'LEFT'}"-->
+
+        <td data-title="'Type'" sortable="'propType'" class="propType"><!-- filterable="{field:'propType', type:'text', align:'LEFT'}" -->
+          <span ng-bind="listing.propType"></span>
+        </td>
+        <td data-title="'Community'" sortable="'community'" class="community"><!-- filterable="{field:'community', type:'text', align:'LEFT'}" -->
+          <span ng-bind="listing.community"></span>
+        </td>
+        <td data-title="'City'" sortable="'city'" class="city"><!-- filterable="{field:'city', type:'text', align:'LEFT'}" -->
+          <span ng-bind="listing.city"></span>
+        </td>
+        <td data-title="'State'" sortable="'state'" class="state"><!-- filterable="{field:'state', type:'text', align:'LEFT'}" -->
+          <span ng-bind="listing.state"></span>
+        </td>
+        <td data-title="'Country'" sortable="'country'" class="country"><!-- filterable="{field:'country', type:'text', align:'LEFT'}" -->
+          <span ng-bind="listing.country"></span>
+        </td>
+        <td data-title="'Price'" sortable="'priceLow'" class="price"><!-- filterable="{field:'country', type:'text', align:'LEFT'}" -->
+          <span>{{listing.priceLow}}/{{listing.priceHigh}}</span>
+        </td>
+
+        <td data-title="'Status'" sortable="'status'" class="status text-center" ng-bind="listing.status"></td> <!--  filterable="{field:'status', type:'dropdown'}" -->
+
+        <td data-title="" class="buttons text-center">
+          <a ui-sref="listings/edit({id: listing.id})" class="btn btn-xs btn-stealth"><i class="fa fa-edit fa-lg"></i></a>
+          <button ng-click="onDeleteListing(listing)" class="btn btn-xs btn-danger" ng-if="currentUser.role == 'ADMIN'"><i class="fa fa-trash fa-lg"></i></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

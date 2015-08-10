@@ -1,0 +1,26 @@
+extends ../layout/html.jade
+
+block title
+	span.
+		Welcome to Immunovault
+
+block content
+	p.
+		Hi, <strong>#{param.name}</strong>!
+	p.
+		Welcome to Immunovault.
+	p.
+		Could you please click the link below to verify that this is your email address?
+	p
+		a(href="#{config.app.host}/verify/#{param.verificationToken}").
+			Click Here
+	p.
+		Or open following link
+	p.
+		#{config.app.host}/verify/#{param.verificationToken}
+	p.
+		If you need help or have any questions, please visit https://help.immunovault.com
+	p.
+		Thanks! 
+	p.
+		Envato

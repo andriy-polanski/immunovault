@@ -1,0 +1,93 @@
+<div class="panel panel-midnightblue">
+	<div class="panel-heading">
+		<h2 ng-if="user.id">Edit user</h2>
+		<h2 ng-if="!user.id">Add new user</h2>
+		<div class="options">
+			<ul class="nav nav-tabs"><li class="dropdown pull-right tabdrop hide"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-angle-down"></i> </a><ul class="dropdown-menu"></ul></li>
+				<li class="active" ng-show="user.id"><a show-tab="#accountinfo-form" data-toggle="tab" aria-expanded="true">Account info</a></li>
+				<li class="" ng-show="user.id"><a show-tab="#builder-form" data-toggle="tab" aria-expanded="false">Assign Builders</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="tab-content">
+			<div class="tab-pane active" id="accountinfo-form">
+				<form class="form-horizontal row-border">
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-2 control-label">Email address</label>
+						<div class="col-sm-8">
+							<input type="email" class="form-control" id="focusedinput" placeholder="Email address" ng-model="user.email" />
+						</div>
+						<div class="col-sm-2">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="fullname" class="col-sm-2 control-label">Full name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="fullname" placeholder="Full name" ng-model="user.name" />
+						</div>
+						<div class="col-sm-2">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password" />
+						</div>
+						<div class="col-sm-2">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">User Role</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="user.role"
+						          ng-options="role for role in USER_ROLES">
+						    </select>
+						</div>
+						<div class="col-sm-2">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">User Status</label>
+						<div class="col-sm-8">
+							<select class="form-control" ng-model="user.status"
+						          ng-options="status for status in USER_STATUSES">
+						    </select>
+						</div>
+						<div class="col-sm-2">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane" id="builder-form" ng-show="user.id">
+				<table id="users" class="table table-striped" ng-table="tableParams">
+					<tr ng-repeat="builder in $data">
+						<td data-title="'Builder'" sortable="'builder'" class="title" ng-bind="builder.builder" 
+						style="cursor:pointer;" ng-click="$state.go('builders/edit', {id: builder.id})"></td> <!-- filterable="{field:'email', type:'text', align:'LEFT'}"-->
+
+						<td data-title="'Paid Status'" sortable="'paid'" class="name text-center"><!-- filterable="{field:'name', type:'text', align:'LEFT'}" -->
+							<span ng-if="builder.paid == 1">Paid</span>
+							<span ng-if="builder.paid == 0"></span>
+						</td>
+
+						<td data-title="'Status'" sortable="'status'" class="role text-center"><!--  filterable="{field:'role', type:'dropdown'}"-->
+						<span ng-bind="builder.status"></span>
+						</td>
+
+						<td data-title="'Assign'" sortable="'isAssigned'" class="role text-center"><!--  filterable="{field:'role', type:'dropdown'}"-->
+							<input type="checkbox" ui-switch class="js-switch-primary switchery-sm" ng-model="builder.isAssigned" />
+						</td>
+					</tr>
+					</table>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<button class="btn-primary btn" ng-click="onSave()">Save</button>
+				<a class="btn-danger btn" ui-sref="users">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>
