@@ -1,0 +1,48 @@
+<div class="container" id="registration-form" ng-controller="forgetPasswordController">
+  <a href="/" class="login-logo"><img src="assets/img/logo-big.png"></a>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="panel panel-default" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);" ng-show=" !completed">
+        <div class="panel-heading">
+          <h2>Find your password</h2>
+        </div>
+        <div class="panel-body">
+          <div class="alert alert-warning" role="alert" ng-show="error != ''">{{ error }}</div>
+          <form action="" class="form-horizontal" name="frm">
+            <div class="form-group mb-n">
+              <div class="col-xs-12">
+                <p>Enter your email to reset your password</p>
+                <div class="input-group">             
+                  <span class="input-group-addon">
+                    <i class="ti ti-user"></i>
+                  </span>
+                  <input type="email" class="form-control" placeholder="Email Address" ng-model="user.email" required="required" ng-return="onSend()" />
+                </div>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+        <div class="panel-footer">
+          <div class="clearfix">
+            <a href="/login" class="btn btn-default pull-left">Back to Login</a>
+            <button class="btn btn-primary pull-right" ng-click="onSend()" ng-disabled="frm.$invalid">Send now</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);" ng-show="completed">
+        <div class="panel-heading">
+          <h2>Find your password</h2>
+        </div>
+        <div class="panel-body">
+          We have sent verification email to your email address.
+        </div>
+        <div class="panel-footer">
+          <div class="clearfix">
+            <a href="/login" class="btn btn-default">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -169,7 +169,7 @@ exports.requestForgot = function(req, res) {
 
 	db.User
 		.scope('not_deleted')
-		.find({where:{email: { like: user.email}}})
+		.find({where:{email: { like: email}}})
 		.then(function(result) {
       if(!result) {
       	return res.status(400).send({
@@ -185,8 +185,19 @@ exports.requestForgot = function(req, res) {
 
       resetRequest.save()
       	.then(function(request) {
+					// send email
+					mailer.email({
+						to: email,
+						subject: 'Reset your password on Immunovault.com',
+						view: 'reset_password',
+						param: {
+							token: resetRequest.token
+						}
+					});
 					return res.status(200).send({
 					});
+
+
       	}, function(err) {
 					return res.status(400).send({
 						message: errorHandler.getErrorMessage(err)
@@ -205,23 +216,26 @@ exports.requestForgot = function(req, res) {
 exports.validateResetToken = function(req, res) {
 	var token = req.params.token;
 
+	var render = function(status, message) {
+		res.render('reset', {
+			status: status,
+			token: token,
+			message: message
+		});
+ 	};
+
 	db.ResetPassword
 		.scope('not_expired')
 		.find({where:{token:token}})
 		.then(function(result){
 			if(result) {
-				return res.status(200).send({
-				});
+				return render(true, '');
 			}
 			else {
-				return res.status(400).send({
-					message: 'Invalid token.'
-				});
+				return render(false, 'Invalid token.');
 			}
 		}, function(err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
+			return render(false, errorHandler.getErrorMessage(err));
 		});
 };
 
@@ -229,7 +243,7 @@ exports.validateResetToken = function(req, res) {
  * Reset password with token
  */
 exports.resetPassword = function(req, res) {
-	var token = req.params.token;
+	var token = req.body.token;
 	var password = req.body.password;
 	if(!password || password == '') {
 		return res.status(400).send({
@@ -244,7 +258,7 @@ exports.resetPassword = function(req, res) {
 			if(result) {
 				db.User
 					.scope('not_deleted')
-					.find({where:{email: { like: user.email}}})
+					.find({where:{email: { like: result.email}}})
 					.then(function(user) {
 						if(!user) {
 							return res.status(400).send({

@@ -7,6 +7,7 @@ module.exports = function(app) {
 	app.route('/login').get(core.login);
 	app.route('/logout').get(core.logout);
 	app.route('/signup').get(core.signup);
+	app.route('/forget_password').get(core.forgetPassword);
 
 	app.route('/mail_template').get(core.mail_template);
 };

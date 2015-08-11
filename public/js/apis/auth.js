@@ -24,6 +24,14 @@ angular.module('newhomezapp.module')
 			signup: {
 				method: 'POST',
 				url: '/auth/signup'
+			},
+			forget: {
+				method: 'POST',
+				url: '/auth/forgot'
+			},
+			reset: {
+				method: 'POST',
+				url: '/auth/reset'
 			}
 		});
 	}]);

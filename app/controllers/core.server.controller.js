@@ -38,6 +38,13 @@ exports.signup = function(req, res) {
 
 	res.render('signup');
 };
+exports.forgetPassword = function(req, res) {
+	if (req.isAuthenticated()) {
+		return res.redirect('/');
+	}
+
+	res.render('forget');
+};
 
 exports.mail_template = function(req, res) {
 	var view = 'reset_password';

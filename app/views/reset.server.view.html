@@ -1,0 +1,11 @@
+{% extends 'layout.server.view.html' %}
+
+{% block content %}
+<script>
+status = {{status}};
+token = '{{token}}';
+message = '{{message}}'; 
+</script>
+<div class="focused-form" ng-include="'../modules/landing/reset.html'">
+</div>
+{% endblock %}
