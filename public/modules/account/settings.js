@@ -23,8 +23,11 @@ angular.module('newhomezapp.module')
 
 	  	$scope.onSave = function() {
 	  		$rootScope.clearMessages();
-	  		if($scope.user.name === '') {
-	  			return $rootScope.setError('Please enter the full name.');
+	  		if($scope.user.firstName === '') {
+	  			return $rootScope.setError('Please enter the first name.');
+	  		}
+	  		else if($scope.user.lastName === '') {
+	  			return $rootScope.setError('Please enter the last name.');
 	  		}
 	  		else if($scope.user.password !== $scope.password) {
 	  			return $rootScope.setError('Confirm password does not match.');
@@ -34,7 +37,8 @@ angular.module('newhomezapp.module')
 	  		}
 	  		Utils.showWaiting('Saving...');
 	  		Auth.update({
-	  			name: $scope.user.name, 
+	  			firstName: $scope.user.firstName, 
+	  			lastName: $scope.user.lastName, 
 	  			password: $scope.user.password
 	  		}).$promise
 	  			.then(function() {

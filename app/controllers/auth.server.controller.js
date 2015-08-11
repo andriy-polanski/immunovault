@@ -103,8 +103,11 @@ exports.update = function(req, res) {
 	var message = null;
 
 	// Merge existing user
-	if(req.body.password) {
+	if(req.body.password && req.body.password != '') {
 		req.body.password = db.User.encryptPassword(req.body.password);
+	}
+	else {
+		delete req.body.password;
 	}
 	user = _.extend(user, req.body);
 
