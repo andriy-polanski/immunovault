@@ -18,7 +18,7 @@
 				<ul class="acc-menu">
 					<li class="nav-separator"><span>Explore</span></li>
 					<li class="active"><a ui-sref="dashboard" data-ui-sref-opts="{reload: true}"><i class="ti ti-home"></i><span>Dashboard</span><!-- <span class="badge badge-teal">2</span> --></a></li>
-					<li class="hasChild"><a href="javascript:;"><i class="ti ti-layout"></i><span>Builders</span></a>
+					<!-- <li class="hasChild"><a href="javascript:;"><i class="ti ti-layout"></i><span>Builders</span></a>
 						<ul class="acc-menu">
 							<li><a ui-sref="builders" data-ui-sref-opts="{reload: true}">List builders</a></li>
 							<li><a ui-sref="builders/add" ng-if="currentUser.role === 'ADMIN'" data-ui-sref-opts="{reload: true}">Add new builder</a></li>
@@ -29,11 +29,11 @@
 							<li><a ui-sref="listings({builder:''})" data-ui-sref-opts="{reload: true}">List listings</a></li>
 							<li><a ui-sref="listings/add" data-ui-sref-opts="{reload: true}">Add new listing</a></li>
 						</ul>
-					</li>
+					</li> -->
 					<li class="hasChild"><a href="javascript:;" ng-if="currentUser.role === 'ADMIN'"><i class="ti ti-user"></i><span>Users</span></a>
 						<ul class="acc-menu">
 							<li><a ui-sref="users" data-ui-sref-opts="{reload: true}">List users</a></li>
-							<li><a ui-sref="users/add" data-ui-sref-opts="{reload: true}">Add new user</a></li>
+							<!-- <li><a ui-sref="users/add" data-ui-sref-opts="{reload: true}">Add new user</a></li> -->
 						</ul>
 					</li>
 					<li><a ui-sref="settings" data-ui-sref-opts="{reload: true}"><i class="ti ti-settings"></i><span>Settings</span></a></li>

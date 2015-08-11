@@ -112,7 +112,7 @@ exports.delete = function(req, res) {
  * List of users
  */
 exports.list = function(req, res) {
-	db.User.findAll({include: [{model: db.Builder, required: false}]})
+	db.User.findAll({include: [{model: db.Product, required: false}]})
 		.then(function(users) {
 			res.send(users);
 		}, function(err) {
@@ -127,7 +127,7 @@ exports.list = function(req, res) {
  */
 exports.userByID = function(req, res, next, id) {
 
-	db.User.findById(id, {include: [{model: db.Builder, required: false}]})
+	db.User.findById(id, {include: [{model: db.Product, required: false}]})
 		.then(function(user) {
 			if (!user) return next(new Error('Failed to load User ' + id));
 			req.profile = user;
