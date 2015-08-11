@@ -1,7 +1,7 @@
 {
   apps : [
     {
-      name      : "NewHomezApp",
+      name      : "immunovault",
       script    : "/usr/local/bin/grunt",
       env_production : {
         NODE_ENV: "production"
@@ -10,11 +10,11 @@
   ],
   deploy : {
     production : {
-      key  : "/srv/newhomesapp/pem/newhomezapp.pem",
+      key  : "/srv/kyle/pem/immunovault.pem",
       user : "ubuntu",
-      host : "52.26.240.49",
+      host : "54.149.157.238",
       ref  : "origin/master",
-      repo : "git@fordhaminc.git.beanstalkapp.com:/fordhaminc/newhomzdatamanagement.git",
+      repo : "git@github.com:andriy-polanski/immunovault.git",
       path : "/srv/production",
       "pre-deploy": "",
       "post-deploy" : "sudo npm install && sudo bower install --allow-root && sequelize db:migrate --env production && sudo pm2 startOrRestart ecosystem.json5 --env production"

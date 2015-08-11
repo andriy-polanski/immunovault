@@ -3,8 +3,8 @@
 module.exports = {
 	db: {
         host: 'localhost',
-        name: 'newhomezapp',
-        password: 'password',
+        name: 'immunovault_db',
+        password: '!@#456&*(0-=',
         username: 'root'
     },
 	port: process.env.PORT || 80,
@@ -20,7 +20,7 @@ module.exports = {
 	app: {
 		admin_name: 'Support',
 		admin_email: 'support@immunovault.com',
-		host: 'http://www.immunovault.com'
+		host: 'http://54.149.157.238'
 	},
 	smtp: {
 		host: 'smtp.mandrillapp.com',
